@@ -1,3 +1,4 @@
 {
-	"pir": 14
+	"pir": 14,
+	"photo": "raspistill -t 500 -o ~/Pictures/image-%s.jpg"
 }
