@@ -1,4 +1,5 @@
 {
 	"pir": 14,
-	"photo": "raspistill -t 500 -o ~/Pictures/image-%s.jpg"
+	"photo": "raspistill -t 500 -o ~/Pictures/image-%s.jpg",
+	"video": "raspivid -t 10000 -o ~/Videos/trail-%s.h264"
 }
