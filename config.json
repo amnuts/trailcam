@@ -1,5 +1,8 @@
 {
 	"pir": 14,
 	"photo": "raspistill -t 500 -o ~/Pictures/image-%s.jpg",
-	"video": "raspivid -t 10000 -o ~/Videos/trail-%s.h264"
+	"video": "raspivid -t 5000 -o ~/Videos/trail-%s.h264",
+	"sleep": 7,
+	"video_path": "/home/pi/Videos/trail-%s.h264",
+	"min_record_len": 5
 }
