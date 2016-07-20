@@ -9,14 +9,13 @@ with open('config.json', 'r') as f:
 GPIO.setup(config['pir'], GPIO.IN)
 
 try:
-	print "PIR Module Test (CTRL+C to exit)"
-	time.sleep(2)
-	print "Ready"
-	while True:
-		if GPIO.input(config['pir']):
-			print "%s %s" % (int(round(time.time() * 1000)), ": motion detected")
+    print "PIR Module Test (CTRL+C to exit)"
+    time.sleep(2)
+    print "Ready"
+    while True:
+        if GPIO.input(config['pir']):
+            print "%s %s" % (int(round(time.time() * 1000)), ": motion detected")
 
 except KeyboardInterrupt:
-	print "Quit"
-	GPIO.cleanup()
-
+    print "Quit"
+    GPIO.cleanup()
