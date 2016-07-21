@@ -4,5 +4,5 @@
 	"video": "raspivid -t 5000 -o ~/Videos/trail-%s.h264",
 	"sleep": 7,
 	"video_path": "/home/pi/Videos/trail-%s.h264",
-	"min_record_len": 5
+	"record_seconds": 5
 }
