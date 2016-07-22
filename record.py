@@ -13,7 +13,7 @@ def get_filename():
     return config['save_path'] % datetime.now().strftime('%Y%m%d-%H%M%S')
 
 
-def pir_triggered():
+def pir_triggered(channel):
     global config, lastSeen, recording, camera
     lastSeen = datetime.now()
     if not recording:
