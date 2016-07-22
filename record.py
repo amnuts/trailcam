@@ -68,11 +68,13 @@ try:
 
 except KeyboardInterrupt:
     if recording:
+        recording = False
         camera.wait_recording(0)
         camera.stop_recording()
     GPIO.cleanup()
 
 if recording:
+    recording = False
     camera.wait_recording(0)
     camera.stop_recording()
 GPIO.cleanup()
