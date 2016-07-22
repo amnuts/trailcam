@@ -2,9 +2,9 @@
 
 import json
 import os
-import picamera
-import time
 import RPi.GPIO as GPIO
+from time import sleep
+from picamera import PiCamera
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ with open(os.path.dirname(os.path.realpath(__file__)) + '/config.json', 'r') as 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(config['pir_pin'], GPIO.IN)
 
-camera = picamera.PiCamera()
+camera = PiCamera()
 camera.resolution = (1280, 720)
 camera.led = False
 
@@ -39,31 +39,40 @@ lastSeen = datetime.now()
 
 GPIO.add_event_detect(config['pir_pin'], GPIO.RISING, callback=pir_triggered)
 
-print "Starting in 10 seconds"
-time.sleep(10)
-print "Go!"
+if config['delay_start_seconds']:
+    if config['debug_output']:
+        print "Starting in %d seconds" % config['delay_start_seconds']
+    sleep(config['delay_start_seconds'])
+    if config['debug_output']:
+        print "Go!"
 
 try:
     while True:
         if recording:
-            print "Currently recording"
+            if config['debug_output']:
+                print "Currently recording"
             delta = datetime.now() - lastSeen
             if delta.seconds > config['record_seconds']:
-                print "Stopping the video"
+                if config['debug_output']:
+                    print "Stopping the video"
                 camera.stop_recording()
                 recording = False
             else:
-                print "Still movement, waiting some more"
+                if config['debug_output']:
+                    print "Still movement, waiting some more"
                 camera.wait_recording(config['record_seconds'])
         else:
-            print "Not currently recording"
-        time.sleep(1)
+            if config['debug_output']:
+                print "Not currently recording"
+        sleep(config['sleep_seconds'])
 
 except KeyboardInterrupt:
     if recording:
+        camera.wait_recording(0)
         camera.stop_recording()
     GPIO.cleanup()
 
 if recording:
+    camera.wait_recording(0)
     camera.stop_recording()
 GPIO.cleanup()
