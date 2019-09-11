@@ -28,7 +28,7 @@ The `pir_bin` define what pin the PIR sensor data output is attached to.  Bear i
 
 The `delay_start_seconds` is how long it'll take to start recording from when the script starts - handy if you have it auto-start on the pi booting up.
 
-The `record_seconds` is how long the video should keep recordiong for once it doesn't detect any movement.
+The `record_seconds` is how long the video should keep recording for once it doesn't detect any movement.
 
 `sleep_seconds` is how long it'll sleep before running the recording check loop again.
 
